@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-LIBVIRT_VERSION = 7.4.0
+LIBVIRT_VERSION = 7.7.0
 LIBVIRT_SITE = https://libvirt.org/sources
 LIBVIRT_SOURCE = libvirt-$(LIBVIRT_VERSION).tar.xz
 LIBVIRT_LICENSE = LGPL-2.1+
@@ -21,7 +21,10 @@ LIBVIRT_DEPENDENCIES = \
 	libtirpc \
 	libxml2 \
 	udev \
-	zlib
+	zlib \
+	$(TARGET_NLS_DEPENDENCIES)
+
+LIBVIRT_LDFLAGS = $(TARGET_LDFLAGS) $(TARGET_NLS_LIBS)
 
 LIBVIRT_CONF_ENV += \
 	CFLAGS="$(TARGET_CFLAGS) `$(PKG_CONFIG_HOST_BINARY) --cflags libtirpc`" \
@@ -30,7 +33,9 @@ LIBVIRT_CONF_ENV += \
 LIBVIRT_CONF_OPTS = \
 	-Drpath=disabled \
 	-Dapparmor=disabled \
+	-Ddocs=disabled \
 	-Ddriver_bhyve=disabled \
+	-Ddriver_ch=disabled \
 	-Ddriver_esx=disabled \
 	-Ddriver_hyperv=disabled \
 	-Ddriver_interface=enabled \
@@ -38,10 +43,12 @@ LIBVIRT_CONF_OPTS = \
 	-Ddriver_openvz=disabled \
 	-Ddriver_remote=enabled \
 	-Ddriver_secrets=enabled \
+	-Ddriver_test=disabled \
 	-Ddriver_vbox=disabled \
 	-Ddriver_vmware=disabled \
 	-Ddriver_vz=disabled \
 	-Ddtrace=disabled \
+	-Dexpensive_tests=disabled \
 	-Dfirewalld=disabled \
 	-Dfirewalld_zone=disabled \
 	-Dglusterfs=disabled \
@@ -49,6 +56,7 @@ LIBVIRT_CONF_OPTS = \
 	-Dinit_script=$(if $(BR2_INIT_SYSTEMD),systemd,none) \
 	-Dlogin_shell=disabled \
 	-Dnetcf=disabled \
+	-Dnls=$(if $(BR2_SYSTEM_ENABLE_NLS),enabled,disabled) \
 	-Dnumad=disabled \
 	-Dopenwsman=disabled \
 	-Dpciaccess=enabled \
@@ -60,6 +68,7 @@ LIBVIRT_CONF_OPTS = \
 	-Dstorage_mpath=disabled \
 	-Dsysctl_config=enabled \
 	-Dtest_coverage=false \
+	-Dtests=disabled \
 	-Dudev=enabled \
 	-Dwireshark_dissector=disabled
 
@@ -126,6 +135,13 @@ else
 LIBVIRT_CONF_OPTS += -Dlibiscsi=disabled
 endif
 
+ifeq ($(BR2_PACKAGE_LIBNL),y)
+LIBVIRT_CONF_OPTS += -Dlibnl=enabled
+LIBVIRT_DEPENDENCIES += libnl
+else
+LIBVIRT_CONF_OPTS += -Dlibnl=disabled
+endif
+
 ifeq ($(BR2_PACKAGE_LIBPCAP),y)
 LIBVIRT_CONF_OPTS += -Dlibpcap=enabled
 LIBVIRT_DEPENDENCIES += libpcap
@@ -162,9 +178,9 @@ else
 LIBVIRT_CONF_OPTS += -Dselinux=disabled -Dsecdriver_selinux=disabled
 endif
 
-ifeq ($(BR2_PACKAGE_LVM2),y)
+ifeq ($(BR2_PACKAGE_LVM2_STANDARD_INSTALL),y)
 LIBVIRT_CONF_OPTS += -Dstorage_lvm=enabled
-LIBVIRT_DEPENDENCIES += lvm2
+LIBVIRT_DEPENDENCIES += host-lvm2 lvm2
 else
 LIBVIRT_CONF_OPTS += -Dstorage_lvm=disabled
 endif

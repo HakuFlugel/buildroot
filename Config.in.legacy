@@ -144,7 +144,79 @@ endif
 
 ###############################################################################
 
+comment "Legacy options removed in 2021.11"
+
+config BR2_PACKAGE_STRONGSWAN_EAP
+	bool "strongswan EAP plugins now individually selectable"
+	select BR2_LEGACY
+	help
+	  The various EAP plugins are now individually selectable.
+
+config BR2_PACKAGE_GNURADIO_PAGER
+	bool "gnuradio gr-flex support removed"
+	select BR2_LEGACY
+	help
+	  gr-flex has been removed from gnuradio since version 3.8.0.0.
+
+config BR2_KERNEL_HEADERS_5_11
+	bool "kernel headers version 5.11.x are no longer supported"
+	select BR2_LEGACY
+	help
+	  Version 5.11.x of the Linux kernel headers are no longer
+	  maintained upstream and are now removed.
+
+config BR2_KERNEL_HEADERS_5_12
+	bool "kernel headers version 5.12.x are no longer supported"
+	select BR2_LEGACY
+	help
+	  Version 5.12.x of the Linux kernel headers are no longer
+	  maintained upstream and are now removed.
+
 comment "Legacy options removed in 2021.08"
+
+config BR2_TARGET_GRUB2_BUILTIN_MODULES
+	string "the grub2 builtin modules has been renamed"
+	help
+	  This option has been split to separate the builtin modules
+	  between BR2_TARGET_GRUB2_BUILTIN_MODULES_PC and
+	  BR2_TARGET_GRUB2_BUILTIN_MODULES_EFI.
+
+config BR2_TARGET_GRUB2_BUILTIN_MODULES_WRAP
+	bool
+	default y if BR2_TARGET_GRUB2_BUILTIN_MODULES != ""
+	select BR2_LEGACY
+
+config BR2_TARGET_GRUB2_BUILTIN_CONFIG
+	string "the grub2 builtin configuration has been renamed"
+	help
+	  This option has been split to separate the builtin
+	  configuration between BR2_TARGET_GRUB2_BUILTIN_CONFIG_PC and
+	  BR2_TARGET_GRUB2_BUILTIN_CONFIG_EFI.
+
+config BR2_TARGET_GRUB2_BUILTIN_CONFIG_WRAP
+	bool
+	default y if BR2_TARGET_GRUB2_BUILTIN_CONFIG != ""
+	select BR2_LEGACY
+
+config BR2_PACKAGE_LIBMCRYPT
+	bool "libmcrypt package was removed"
+	select BR2_LEGACY
+	help
+	  This package has been removed as "the last update to libmcrypt
+	  was in 2007, despite years of unmerged patches. These facts
+	  have led security experts to declare mcrypt abandonware and
+	  discourage its use in new development" (extract from
+	  https://en.wikipedia.org/wiki/Mcrypt).
+
+config BR2_PACKAGE_MCRYPT
+	bool "mcrypt package was removed"
+	select BR2_LEGACY
+	help
+	  This package has been removed as "the last update to libmcrypt
+	  was in 2007, despite years of unmerged patches. These facts
+	  have led security experts to declare mcrypt abandonware and
+	  discourage its use in new development" (extract from
+	  https://en.wikipedia.org/wiki/Mcrypt).
 
 config BR2_PACKAGE_PHP_EXT_MCRYPT
 	bool "PHP mcrypt extension removed"
@@ -203,8 +275,6 @@ config BR2_PACKAGE_PHP_EXT_XMLRPC
 	help
 	  The XMLRPC php extension was removed.
 	  See: https://wiki.php.net/rfc/unbundle_xmlprc
-
-comment "Legacy options removed in 2021.08"
 
 config BR2_GCC_VERSION_8_X
 	bool "gcc 8.x support removed"

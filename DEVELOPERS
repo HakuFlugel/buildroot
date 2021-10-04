@@ -294,7 +294,6 @@ F:	package/ebtables/
 F:	package/i2c-tools/
 F:	package/libcurl/
 F:	package/libpcap/
-F:	package/openipmi/
 F:	package/socat/
 F:	package/strace/
 F:	package/tcpdump/
@@ -605,6 +604,9 @@ F:	package/odroidc2-firmware/
 
 N:	Daniel J. Leach <dleach@belcan.com>
 F:	package/dacapo/
+
+N:	Daniel Lang <d.lang@abatec.at>
+F:	package/paho-mqtt-cpp/
 
 N:	Damien Lanson <damien@kal-host.com>
 F:	package/libvdpau/
@@ -967,6 +969,7 @@ F:	package/lsqlite3/
 F:	package/lua*
 F:	package/lzlib/
 F:	package/moarvm/
+F:	package/mstpd/
 F:	package/netsurf/
 F:	package/perl*
 F:	package/pkg-perl.mk
@@ -1052,6 +1055,9 @@ F:	package/xapian/
 
 N:	Giulio Benetti <giulio.benetti@benettiengineering.com>
 F:	package/at/
+F:	package/binutils/
+F:	package/gcc/
+F:	package/harfbuzz/
 F:	package/libfuse3/
 F:	package/libnspr/
 F:	package/libnss/
@@ -1059,7 +1065,9 @@ F:	package/minicom/
 F:	package/nfs-utils/
 F:	package/sunxi-mali-mainline/
 F:	package/sunxi-mali-mainline-driver/
+F:	package/trace-cmd/
 F:	package/udisks/
+F:	toolchain/
 
 N:	Gregory Dymarek <gregd72002@gmail.com>
 F:	package/ding-libs/
@@ -1225,6 +1233,7 @@ F:	package/python-aiohttp-sse/
 F:	package/python-aiologstash/
 F:	package/python-aiomonitor/
 F:	package/python-aiojobs/
+F:	package/python-aioprocessing/
 F:	package/python-aiorwlock/
 F:	package/python-aiosignal/
 F:	package/python-aiozipkin/
@@ -1441,7 +1450,6 @@ F:	package/python-schedule/
 F:	package/python-sentry-sdk/
 F:	package/python-websockets/
 F:	package/python-xlib/
-F:	package/sentry-cli/
 F:	package/sentry-native/
 F:	package/unclutter-xfixes/
 
@@ -1558,6 +1566,8 @@ F:	package/python-daemonize/
 F:	package/python-flask/
 F:	package/python-flask-babel/
 F:	package/python-gunicorn/
+F:	support/testing/tests/package/sample_python_flask.py
+F:	support/testing/tests/package/test_python_flask.py
 
 N:	Lionel Orry <lionel.orry@gmail.com>
 F:	package/mongrel2/
@@ -1828,6 +1838,7 @@ F:	package/raptor/
 F:	package/rng-tools/
 F:	package/rsyslog/
 F:	package/setools/
+F:	package/sloci-image/
 F:	package/smcroute/
 F:	package/tclap/
 F:	package/tini/
@@ -1838,6 +1849,7 @@ F:	package/wpa_supplicant/
 F:	package/wireless_tools/
 F:	package/xen/
 F:	package/xml-security-c/
+F:	support/testing/tests/fs/test_oci.py
 F:	support/testing/tests/package/br2-external/openjdk/
 F:	support/testing/tests/package/test_openjdk.py
 F:	support/testing/tests/package/test_opkg/
@@ -1868,41 +1880,12 @@ N:	Max Filippov <jcmvbkbc@gmail.com>
 F:	arch/Config.in.xtensa
 
 N:	Maxim Kochetkov <fido_max@inbox.ru>
+F:	package/libgeos/
 F:	package/libosmium/
 F:	package/osm2pgsql/
 F:	package/postgis/
 F:	package/protozero/
 F:	package/timescaledb/
-
-N:	Maxime Hadjinlian <maxime.hadjinlian@gmail.com>
-F:	package/babeld/
-F:	package/dante/
-F:	package/faifa/
-F:	package/initscripts/
-F:	package/intel-microcode/
-F:	package/iucode-tool/
-F:	package/jasper/
-F:	package/kodi/
-F:	package/libass/
-F:	package/libbluray/
-F:	package/libcdio/
-F:	package/libcofi/
-F:	package/libenca/
-F:	package/libmodplug/
-F:	package/libnfs/
-F:	package/libplist/
-F:	package/libshairplay/
-F:	package/linux-zigbee/
-F:	package/netcat-openbsd/
-F:	package/open-plc-utils/
-F:	package/rpi-firmware/
-F:	package/rpi-userland/
-F:	package/rtmpdump/
-F:	package/skeleton/
-F:	package/systemd/
-F:	package/systemd-bootchart/
-F:	package/tinyalsa/
-F:	package/tinyxml/
 
 N:	Michael Durrant <mdurrant@arcturusnetworks.com>
 F:	board/arcturus/
@@ -1986,6 +1969,7 @@ N:	Naumann Andreas <ANaumann@ultratronik.de>
 F:	package/evemu/
 F:	package/libevdev/
 F:	package/pkg-qmake.mk
+F:	package/qt5/qt5opcua/
 
 N:	Nicola Di Lieto <nicola.dilieto@gmail.com>
 F:	package/uacme/
@@ -1998,10 +1982,16 @@ N:	Nicolas Carrier <nicolas.carrier@orolia.com>
 F:	package/bmap-tools/
 F:	package/php-xdebug/
 F:	package/python-augeas/
+F:	package/python-flask-expects-json/
+F:	package/python-git/
 F:	support/testing/tests/package/sample_bmap_tools.sh
 F:	support/testing/tests/package/sample_python_augeas.py
+F:	support/testing/tests/package/sample_python_flask_expects_json.py
+F:	support/testing/tests/package/sample_python_git.py
 F:	support/testing/tests/package/test_bmap_tools.py
 F:	support/testing/tests/package/test_python_augeas.py
+F:	support/testing/tests/package/test_python_flask_expects_json.py
+F:	support/testing/tests/package/test_python_git.py
 
 N:	Nicolas Cavallari <nicolas.cavallari@green-communications.fr>
 F:	package/libgit2/
@@ -2279,7 +2269,10 @@ F:	package/python-boto3/
 F:	package/python-botocore/
 F:	package/python-jmespath/
 F:	package/python-pymupdf/
+F:	package/python-rsa/
 F:	package/python-s3transfer/
+F:	support/testing/tests/package/sample_python_rsa.py
+F:	support/testing/tests/package/test_python_rsa.py
 
 N:	Refik Tuzakli <tuzakli.refik@gmail.com>
 F:	package/freescale-imx/
@@ -2453,6 +2446,7 @@ F:	package/curlpp/
 F:	package/daq/
 F:	package/libgdiplus/
 F:	package/pimd/
+F:	package/sloci-image/
 F:	package/snort/
 F:	package/stella/
 F:	package/tio/
@@ -2498,6 +2492,10 @@ F:	package/vlc/
 F:	package/xscreensaver/
 F:	package/zmqpp/
 F:	package/zyre/
+
+N:	Simon Doppler <dopsi@dopsi.ch>
+F:	board/seeed/
+F:	configs/stm32mp157c_odyssey_defconfig
 
 N:	Spenser Gilliland <spenser@gillilanding.com>
 F:	arch/Config.in.microblaze
@@ -2589,6 +2587,7 @@ F:	package/x265/
 N:	Thomas Claveirole <thomas.claveirole@green-communications.fr>
 F:	package/fcgiwrap/
 F:	package/openlayers/
+F:	package/vuejs-router/
 
 N:	Thomas De Schampheleire <thomas.de_schampheleire@nokia.com>
 F:	docs/manual/
@@ -2689,6 +2688,8 @@ F:	package/pkg-generic.mk
 F:	package/python/
 F:	package/python3/
 F:	package/python-augeas/
+F:	package/python-flask-expects-json/
+F:	package/python-git/
 F:	package/python-mad/
 F:	package/python-serial/
 F:	package/qextserialport/
@@ -2703,7 +2704,13 @@ F:	package/wayland/
 F:	package/weston/
 F:	support/testing/tests/boot/test_syslinux.py
 F:	support/testing/tests/package/sample_python_augeas.py
+F:	support/testing/tests/package/sample_python_flask.py
+F:	support/testing/tests/package/sample_python_flask_expects_json.py
+F:	support/testing/tests/package/sample_python_git.py
 F:	support/testing/tests/package/test_python_augeas.py
+F:	support/testing/tests/package/test_python_flask.py
+F:	support/testing/tests/package/test_python_flask_expects_json.py
+F:	support/testing/tests/package/test_python_git.py
 F:	toolchain/
 
 N:	Timo Ketola <timo.ketola@exertus.fi>
