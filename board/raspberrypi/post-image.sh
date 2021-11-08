@@ -7,8 +7,9 @@ BOARD_NAME="$(basename ${BOARD_DIR})"
 GENIMAGE_CFG="${BOARD_DIR}/genimage-${BOARD_NAME}.cfg"
 GENIMAGE_TMP="${BUILD_DIR}/genimage.tmp"
 
-search="console=ttyAMA0,115200"
-replace=" "
+search="console=tty1 console=ttyAMA0,115200"
+replace="console=tty3"
+filename="${BINARIES_DIR}/rpi-firmware/cmdline.txt"
 
 if [[ $search != "" && $replace != "" ]]; then
 sed -i "s/$search/$replace/" $filename
