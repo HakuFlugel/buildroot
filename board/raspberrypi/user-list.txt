@@ -1,1 +1,1 @@
-cm4 -1 dev -1 =hejhej /home/cm4 /bin/sh - cm4 main user
+rpi -1 dev -1 =hejhej /home/rpi /bin/sh - rpi main user

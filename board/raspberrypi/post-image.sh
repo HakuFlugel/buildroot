@@ -15,45 +15,8 @@ if [[ $search != "" && $replace != "" ]]; then
 sed -i "s/$search/$replace/" $filename
 fi
 
-for arg in "$@"
-do
-	case "${arg}" in
-		--add-miniuart-bt-overlay)
-		if ! grep -qE '^dtoverlay=' "${BINARIES_DIR}/rpi-firmware/config.txt"; then
-			echo "Adding 'dtoverlay=miniuart-bt' to config.txt (fixes ttyAMA0 serial console)."
-			cat << __EOF__ >> "${BINARIES_DIR}/rpi-firmware/config.txt"
 
-# fixes rpi (3B, 3B+, 3A+, 4B and Zero W) ttyAMA0 serial console ,krnbt=on
-dtoverlay=dwc2,dr_mode=host,disable-bt
-dtoverlay=uart0
-dtoverlay=uart-ctsrts
-#dtoverlay=uart2,ctsrts
-#dtoverlay=uart3,ctsrts
-dtoverlay=uart4,ctsrts
-#dtoverlay=uart5
-#dtoverlay=spi6-1cs
-__EOF__
-		fi
-		;;
-		--aarch64)
-		# Run a 64bits kernel (armv8)
-		sed -e '/^kernel=/s,=.*,=Image,' -i "${BINARIES_DIR}/rpi-firmware/config.txt"
-		if ! grep -qE '^arm_64bit=1' "${BINARIES_DIR}/rpi-firmware/config.txt"; then
-			cat << __EOF__ >> "${BINARIES_DIR}/rpi-firmware/config.txt"
-
-# enable 64bits support
-arm_64bit=1
-__EOF__
-		fi
-		;;
-		--gpu_mem_256=*|--gpu_mem_512=*|--gpu_mem_1024=*)
-		# Set GPU memory
-		gpu_mem="${arg:2}"
-		sed -e "/^${gpu_mem%=*}=/s,=.*,=${gpu_mem##*=}," -i "${BINARIES_DIR}/rpi-firmware/config.txt"
-		;;
-	esac
-
-done
+cp "${BOARD_DIR}/config_cm4io_64bit_custom.txt" "${BINARIES_DIR}/rpi-firmware/config.txt"
 
 # Pass an empty rootpath. genimage makes a full copy of the given rootpath to
 # ${GENIMAGE_TMP}/root so passing TARGET_DIR would be a waste of time and disk

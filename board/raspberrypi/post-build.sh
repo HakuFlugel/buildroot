@@ -18,4 +18,10 @@ cp board/raspberrypi/wpa_supplicant.conf ${TARGET_DIR}/etc/wpa_supplicant.conf
 #sed 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' ${TARGET_DIR}/etc/ssh/sshd_config
 cp board/raspberrypi/sshd_config ${TARGET_DIR}/etc/ssh/sshd_config
 cp board/raspberrypi/group ${TARGET_DIR}/etc/group
-echo "export TZ CEST" >> ${TARGET_DIR}/etc/inittab
+cp board/raspberrypi/S60openvpn ${TARGET_DIR}/etc/init.d/S60openvpn
+cp board/raspberrypi/profile_prompt.sh ${TARGET_DIR}/etc/profile.d/profile_prompt.sh
+mkdir -p ${TARGET_DIR}/etc/openvpn
+
+if ! grep -q "export TZ CEST" ${TARGET_DIR}/etc/inittab; then 
+    echo "export TZ CEST" >> ${TARGET_DIR}/etc/inittab
+fi

@@ -1,4 +1,4 @@
-root:x:0:cm4
+root:x:0:rpi
 daemon:x:1:
 bin:x:2:
 sys:x:3:
